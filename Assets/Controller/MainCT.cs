@@ -21,17 +21,18 @@ public class MainCT : MonoBehaviour {
         Galaxy = new Galaxy (1);
         Focus = Galaxy.Systems [0];
         SS_OB = Instantiate (SS_Prefab, gameObject.transform);
-
+        SS_OB.AddComponent<PolygonCollider2D> ();
+        SS_OB.tag = "Star";
     }
 
     // Update is called once per frame
     void Update () {
         //Debug.Log ("in MainCT update");
-        //Galaxy.Step (1);
+        Galaxy.Step (1);
     }
 
     public void GStep (int dTime = 1) {
-        Galaxy.Step (dTime);
         Debug.Log ("GStep called with " + dTime);
+        Galaxy.Step (dTime);
     }
 }

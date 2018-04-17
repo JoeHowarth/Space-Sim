@@ -5,24 +5,25 @@ using System;
 
 public class mouseCT : MonoBehaviour {
 
-    Vector3 currPos;
+    static public Vector3 currPos;
     Vector3 lastPos;
     public static Action<float> cbCameraSize; 
 
 	// Use this for initialization
 	void Start () {
-        lastPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        lastPos = currPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 	}
-	
+	  
 	// Update is called once per frame
-	void Update () {
+	void Update () { 
+        currPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 
         // move map by dragging
         if (Input.GetMouseButton (1)) {
-            currPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
             var diff = lastPos - currPos;
             Camera.main.transform.localPosition += diff;
         }
+
 
         // 
         var dScroll = Input.mouseScrollDelta.y;

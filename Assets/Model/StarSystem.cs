@@ -31,10 +31,10 @@ public class StarSystem {
     }
 
     void CreateSol () {
-        SF sf = new SF (true);
+        var sf = new SF (true);
         Name = "Sol";
         planetSystems = new List<PlanetSystem>();
-
+        Debug.Log ("In CreateSol");
         for (int i = 0; i < SF.names.Length; i++) {
 
             PlanetSystem ps = new PlanetSystem (SF.names [i], SF.phys [i], SF.orbits [i], SF.pType [i]);

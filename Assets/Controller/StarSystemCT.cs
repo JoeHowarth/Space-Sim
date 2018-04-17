@@ -1,13 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class StarSystemCT : MonoBehaviour {
+
+public class StarSystemCT : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler {
 
     StarSystem Star;
     GameObject [] PSObs;
     PlanetSystemCT [] PSCTs;
     int numPlanets;
+
+    public void OnPointerDown (PointerEventData eventData) {
+        Debug.Log ("down on Star");
+    }
+
+    public void OnPointerEnter (PointerEventData eventData) {
+        Debug.Log ("entered on Star");
+    }
 
 
     // Use this for initialization
@@ -30,6 +41,9 @@ public class StarSystemCT : MonoBehaviour {
             GameObject PSobj = new GameObject ();
             PSobj.AddComponent<SpriteRenderer> ();
             PSobj.AddComponent<PlanetSystemCT> ();
+            PSobj.AddComponent<CircleCollider2D> ();
+            PSobj.tag = "Planet";
+
             PSobj.transform.SetParent (transform.parent, true);
 
             // Init PS controller
